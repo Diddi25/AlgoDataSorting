@@ -8,7 +8,7 @@ public class Main {
         }
 
         System.out.println(" ");
-        InsertionSort.insertionSort(testArray);
+        QuickSort.quickSort(testArray);
 
         for (int i = 0; i < 10; i++) {
             System.out.print(testArray[i] + " ");
