@@ -3,7 +3,7 @@ public class MergeSort {
         recurseSort(array, 0, array.length - 1);
     }
     private static void recurseSort(int[] array, int min, int max) {
-        if (min < min) {
+        if (min < max) {
             int mid = min + (max - min)/ 2;
             recurseSort(array, min, mid);
             recurseSort(array, mid + 1, max);
