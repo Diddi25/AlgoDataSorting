@@ -1,17 +1,17 @@
 public class MergeSort {
     public static void mergeSort(int[] array) {
-        recurseSort(array, 0, array.length - 1);
+        int[] temporary = new int[array.length];
+        recurseSort(array, temporary, 0, array.length - 1);
     }
-    private static void recurseSort(int[] array, int min, int max) {
+    private static void recurseSort(int[] array, int[] extra, int min, int max) {
         if (min < max) {
-            int mid = min + (max - min)/ 2;
-            recurseSort(array, min, mid);
-            recurseSort(array, mid + 1, max);
-            merge(array, min, mid, max);
+            int mid = (max + min) / 2;
+            recurseSort(extra, array, min, mid);
+            recurseSort(extra, array, mid + 1, max);
+            merge(array, extra, min, mid, max);
         }
     }
-    private static void merge(int[] array, int min, int mid, int max) {
-        int[] temporary = copyItemsOf(array, min, max);
+    private static void merge(int[] array, int[] temporary, int min, int mid, int max) {
         int i = min, j = mid + 1, k = min;
         while(i <= mid && j <= max) {
             if (temporary[i] <= temporary[j]) {
@@ -33,12 +33,5 @@ public class MergeSort {
             j++;
             k++;
         }
-    }
-    private static int[] copyItemsOf(int[] array, int min, int max) {
-        int[] temporary = new int[array.length];
-        for (int i = min; i <= max; i++) {
-            temporary[i] = array[i];
-        }
-        return temporary;
     }
 }

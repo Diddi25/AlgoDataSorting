@@ -4,11 +4,11 @@ public class Benchmark {
         System.out.printf("#%4s%12s%11s%7s%8s\n", "n", "selection", "insertion", "merge", "quick\n");
         benchmark();
     }
-    private static final int tries = 1000;
+    private static final int tries = 1;
     private static float min = Float.POSITIVE_INFINITY;
     private static float max = -1;
     public static void benchmark() {
-        int[] sizes = {100, 200, 400, 800, 1600, 3200};
+        int[] sizes = {100, 250, 500, 1000, 2500, 4000};
 
         for(int n : sizes) {
             int[] array1 = GenerateArrays.unSorted(n);
@@ -35,8 +35,9 @@ public class Benchmark {
     }
     private static float benchmarkSelectionSort(int[] array) {
         for (int i = 0; i < tries; i++) {
+            int[] clone = array.clone();
             long t0 = System.nanoTime();
-            SelectionSort.selectionSort(array);
+            SelectionSort.selectionSort(clone);
             long t1 = System.nanoTime();
             long t = t1 - t0;
             if(t < min) {
@@ -50,8 +51,9 @@ public class Benchmark {
     }
     private static float benchmarkInsertionSort(int[] array) {
         for (int i = 0; i < tries; i++) {
+            int[] clone = array.clone();
             long t0 = System.nanoTime();
-            InsertionSort.insertionSort(array);
+            InsertionSort.insertionSort(clone);
             long t1 = System.nanoTime();
             long t = t1 - t0;
             if(t < min) {
@@ -65,8 +67,9 @@ public class Benchmark {
     }
     private static float benchmarkMergeSort(int[] array) {
         for (int i = 0; i < tries; i++) {
+            int[] clone = array.clone();
             long t0 = System.nanoTime();
-            MergeSort.mergeSort(array);
+            MergeSort.mergeSort(clone);
             long t1 = System.nanoTime();
             long t = t1 - t0;
             if(t < min) {
@@ -80,8 +83,9 @@ public class Benchmark {
     }
     private static float benchmarkQuickSort(int[] array) {
         for (int i = 0; i < tries; i++) {
+            int[] clone = array.clone();
             long t0 = System.nanoTime();
-            QuickSort.quickSort(array);
+            QuickSort.quickSort(clone);
             long t1 = System.nanoTime();
             long t = t1 - t0;
             if(t < min) {
