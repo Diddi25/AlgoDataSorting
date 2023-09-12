@@ -4,11 +4,11 @@ public class Benchmark {
         System.out.printf("#%4s%12s%11s%7s%8s\n", "n", "selection", "insertion", "merge", "quick\n");
         benchmark();
     }
-    private static final int tries = 1;
+    private static final int tries = 1000;
     private static float min = Float.POSITIVE_INFINITY;
     private static float max = -1;
     public static void benchmark() {
-        int[] sizes = {100, 250, 500, 1000, 2500, 4000};
+        int[] sizes = {100, 250, 500, 1000, 2500, 4000, 5500};
 
         for(int n : sizes) {
             int[] array1 = GenerateArrays.unSorted(n);
