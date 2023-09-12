@@ -6,6 +6,7 @@ public class Benchmark {
     }
     private static final int tries = 1000;
     private static float min = Float.POSITIVE_INFINITY;
+    private static float max = -1;
     public static void benchmark() {
         int[] sizes = {100, 200, 400, 800, 1600, 3200};
 
@@ -17,19 +18,19 @@ public class Benchmark {
 
             System.out.printf("%5d", n);
             float min1 = benchmarkSelectionSort(array1);
-            System.out.printf("%8.0f", min1);
+            System.out.printf("%12.0f", min1/1000);
 
             restoreMin();
             float min2 = benchmarkInsertionSort(array2);
-            System.out.printf("%9.0f", min2);
+            System.out.printf("%9.0f", min2/1000);
 
             restoreMin();
             float min3 = benchmarkMergeSort(array3);
-            System.out.printf("%11.0f", min3);
+            System.out.printf("%11.0f", min3/1000);
 
             restoreMin();
             float min4 = benchmarkQuickSort(array4);
-            System.out.printf("%10.0f\n", min4);
+            System.out.printf("%10.0f\n", min4/1000);
         }
     }
     private static float benchmarkSelectionSort(int[] array) {
@@ -41,8 +42,11 @@ public class Benchmark {
             if(t < min) {
                 min = t;
             }
+            if(t > max) {
+                max = t;
+            }
         }
-        return min;
+        return (max + min) / 2;
     }
     private static float benchmarkInsertionSort(int[] array) {
         for (int i = 0; i < tries; i++) {
@@ -53,8 +57,11 @@ public class Benchmark {
             if(t < min) {
                 min = t;
             }
+            if(t > max) {
+                max = t;
+            }
         }
-        return min;
+        return (max + min) / 2;
     }
     private static float benchmarkMergeSort(int[] array) {
         for (int i = 0; i < tries; i++) {
@@ -65,8 +72,11 @@ public class Benchmark {
             if(t < min) {
                 min = t;
             }
+            if(t > max) {
+                max = t;
+            }
         }
-        return min;
+        return (max + min) / 2;
     }
     private static float benchmarkQuickSort(int[] array) {
         for (int i = 0; i < tries; i++) {
@@ -77,10 +87,14 @@ public class Benchmark {
             if(t < min) {
                 min = t;
             }
+            if(t > max) {
+                max = t;
+            }
         }
-        return min;
+        return (max + min) / 2;
     }
     public static void restoreMin() {
         min = Float.POSITIVE_INFINITY;
+        max = -1;
     }
 }

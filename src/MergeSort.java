@@ -23,12 +23,12 @@ public class MergeSort {
             }
             k++;
         }
-        while(i < mid) {
+        while(i <= mid) {
             array[k] = temporary[i];
             i++;
             k++;
         }
-        while(j < max) {
+        while(j <= max) {
             array[k] = temporary[j];
             j++;
             k++;
